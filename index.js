@@ -106,17 +106,36 @@ Car.prototype.fill = function (gallons) {
   this.tank += gallons;
 }
 Car.prototype.drive = function (distance) {
+  let distancePossible = this.milesPerGallon*this.tank;
+  this.startingPoint = this.odometer;
   this.odometer += distance;
-  this.tank = this.tank - distance/this.milesPerGallon;
-  if ( this.tank < 1) {
-    console.log( `I ran out of fuel at ${this.odometer} miles!`)
+  this.tank = this.tank - (distance/this.milesPerGallon);
+  //console.log('tank', this.tank);
+  //console.log(distance - this.milesPerGallon*this.tank)
+  
+  if (this.tank <= 0) {
+    console.log( `I ran out of fuel at ${this.startingPoint+distancePossible} miles!`);
+  } else {
+  console.log('I made it');
+  
   }
+  
 }
-// const carOne = new Car ('Fit', 20);
-// carOne.fill(10);
-// console.log('task 2', carOne.tank);
-// carOne.drive(201);
-// console.log(carOne.tank);
+// Car.prototype.drive = function (distance) {
+// if (this.tank > 0 ) {
+//       this.odometer += distance;
+//       this.tank = this.tank - distance/this.milesPerGallon;
+//     }else {
+//       return `I ran out of fuel at ${this.odometer} miles!`
+//     }
+//   }  
+
+const carOne = new Car ('Fit', 20);
+
+carOne.fill(1);
+//console.log('task 2', carOne.tank);
+carOne.drive(201);
+console.log(carOne.tank);
 
 /*
   TASK 3
